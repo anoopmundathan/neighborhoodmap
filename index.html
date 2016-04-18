@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Neighborhood Map</title>
+	<meta name="viewport" content="initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <button data-bind="click:removeMarker">Remove Marker</button>
+        </div>
+        <div id="map">
+        </div>
+    </div>
+</body>
+
+
+<script src="js/knockout-3.4.0.debug.js"></script>
+<script src="js/app.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfAxwCQ86q9ns6iTLhuUZvdfAiXfii6PQ&libraries=places&callback=initMap" async defer></script>
+</html>
