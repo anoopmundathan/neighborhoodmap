@@ -1,106 +1,88 @@
+'use strict';
 //My Favourite restaurants near Canary Wharf...
-var myLocations = [
-
-    {
-        place:'Wasabi',
-        loc : {lat: 51.505131,lng: -0.020333}
-    },
-
-    {
-        place:'Nandos',
-        loc : {lat: 51.505156,lng: -0.020095}
-    },
-                
-    {
-        place:'Jamies',
-        loc : {lat: 51.504699,lng: -0.014747}
-    },
-
-    {
-        place:'Turkish',
-        loc : {lat: 51.501607,lng: -0.019250}
-    },
-
-    {
-        place:'Pizza',
-        loc : {lat: 51.503397,lng: -0.018879}
-    },
-
-    {
-        place:'Tortilla',
-        loc : {lat: 51.505283,lng: -0.020682}
-    },
-
-    {
-        place:'Itsu', 
-        loc : {lat: 51.505367, lng: -0.020247}
-    }
+var locationsList = [
+    {name:'Wasabi',location : {lat: 51.505131,lng: -0.020333}},
+    {name:'Nandos',location : {lat: 51.505156,lng: -0.020095}},
+    {name:'Jamies',location : {lat: 51.504699,lng: -0.014747}},
+    {name:'Turkish',location : {lat: 51.501607,lng: -0.019250}},
+    {name:'Pizza Express',location : {lat: 51.503397,lng: -0.018879}},
+    {name:'Tortilla',location : {lat: 51.505283,lng: -0.020682}},
+    {name:'Itsu', location : {lat: 51.505367, lng: -0.020247}},
+    {name:'Pret a Manger', location : {lat: 51.505467, lng: -0.020647}}
 ];
+
+//Location class constructor
+var Location = function (item) {
+    this.name = ko.observable(item.name);
+    this.location = ko.observable(item.location);
+    this.marker = ko.observable();
+}
 
 //Initialize the google map
 var map;
 
-
-initMap = function () {
+var initMap = function () {
 
     map = new google.maps.Map(document.getElementById('map'),{
             center: {lat:51.504699,lng:-0.014747},
             zoom: 16
     });
 
-    ko.applyBindings(viewModel);
-    loadMarkers();
 
+    ko.applyBindings(new viewModel);
 }
 
 
-viewModel = function () {
+var viewModel = function () {
+    
+    var self = this;
+    
+    this.locations = ko.observableArray ();
+    this.visibleLocations = ko.observableArray();
+    this.userInput = ko.observable();
 
-   this.places = ko.observableArray();
-   this.allMarkers = ko.observableArray();
-   this.userInput = ko.observable('hello');
+    locationsList.forEach(function (item) {
 
-   //load all the Markers into marker observable Array
-   loadMarkers = function () {
-        myLocations.forEach(function(loc){
+        //create a new location object
+        var location = new Location (item);
 
-            this.places.push(loc.place);
-            //Create marker 
-             var marker = new google.maps.Marker({
-                position: loc.loc,
+        //create marker
+        var marker = new google.maps.Marker({
+                position: item.location,
                 map: map,
-                title: loc.place,
+                title: item.name,
                 animation: google.maps.Animation.DROP
-            });
+        });
 
-           
-            //Add event Listener to Marker
-            marker.addListener('click', toggleBounce);
 
-            function toggleBounce () {
+        location.marker = marker;
 
-               marker.setAnimation(google.maps.Animation.BOUNCE);
+        //this keyword can not be used as it was giving locations undefined error.
+        self.locations.push(location);  
+        self.visibleLocations.push(location);   
+    });
 
-               //setTimeout(marker.setAnimation(null),1000);
+
+    this.filterMarkers = function () {
+
+        //remove list items
+        this.locations.removeAll();
+
+        //remove markers
+        var search = this.userInput().toLowerCase();
+        this.visibleLocations().forEach(function (item) {
+            item.marker.setVisible(false);
+
+            if(item.name().toLowerCase().indexOf(search) !== -1){
+                self.locations.push(item);
             }
+        });
 
-            //Push marker to observable Array
-            this.allMarkers.push(marker);
-   })};
+        this.locations().forEach(function (item) {
+            item.marker.setVisible(true);
+        })
 
-
-
-   removeMarker = function () {
-   };
-
-   filterMarkers = function () {
-        
-        this.places.remove();
-
-        for (var i=0; i <this.userInput().length; i++) {
-            if ()
-        }
-   }
+    }
 
 }
     
