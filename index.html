@@ -11,6 +11,14 @@
     <div class="container">
         <div>
             <button data-bind="click:removeMarker">Remove Marker</button>
+            <input type ="search"  data-bind = "textInput: userInput, event: {keyup: filterMarkers}">
+            <ul data-bind="foreach:locations">
+                <li data-bind="text:location"></li>
+            </ul>
+
+            <ul data-bind="foreach:places">
+                <li data-bind="text:name"></li>
+            </ul>
         </div>
         <div id="map">
         </div>

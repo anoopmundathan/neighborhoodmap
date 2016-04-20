@@ -41,7 +41,7 @@ var myLocations = [
 var map;
 
 
-initMap = function() {
+initMap = function () {
 
     map = new google.maps.Map(document.getElementById('map'),{
             center: {lat:51.504699,lng:-0.014747},
@@ -54,24 +54,23 @@ initMap = function() {
 }
 
 
-viewModel = function() {
+viewModel = function () {
 
+   this.places = ko.observableArray();
    this.allMarkers = ko.observableArray();
+   this.userInput = ko.observable('hello');
 
    //load all the Markers into marker observable Array
-   loadMarkers = function() {
+   loadMarkers = function () {
         myLocations.forEach(function(loc){
 
+            this.places.push(loc.place);
             //Create marker 
              var marker = new google.maps.Marker({
                 position: loc.loc,
                 map: map,
                 title: loc.place,
-                animation: google.maps.Animation.DROP,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: 10
-                }
+                animation: google.maps.Animation.DROP
             });
 
            
@@ -89,7 +88,19 @@ viewModel = function() {
             this.allMarkers.push(marker);
    })};
 
-    removeMarker = function() {};
+
+
+   removeMarker = function () {
+   };
+
+   filterMarkers = function () {
+        
+        this.places.remove();
+
+        for (var i=0; i <this.userInput().length; i++) {
+            if ()
+        }
+   }
 
 }
     
