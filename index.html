@@ -9,19 +9,40 @@
 
 <body>
     <div class="container">
-        <div>
-            <!--<button data-bind="click:removeMarker">Remove Marker</button>-->
-            <input type ="search"  data-bind = "textInput: userInput, event: {keyup: filterMarkers}">
+        <div class="search-header">
+            <input class = "search-box" data-bind = "textInput: userInput, event: {keyup: filterMarkers}">
+            <!--<input class = "search-box" type ="search"  data-bind = "textInput: userInput, event: {keyup: filterMarkers}">-->
+        </div>
+        <div id="hamburger1">
+            <input type = "button" id ="hamburger">
+        </div>
+        <div class="listview">
             <ul data-bind="foreach:locations">
                 <li data-bind="text:name"></li>
             </ul>
-
         </div>
+
         <div id="map">
         </div>
+
     </div>
 </body>
 
+<script type="text/javascript">
+    
+    console.log('hellllll');
+
+    
+    var ham = document.getElementById('#hamburger');
+    //var ham = document.getElementsByClassName('hamburger');
+    ham.addEventListener('click', clickFunction);
+
+    function clickFunction () {
+
+
+    }
+
+</script>
 
 <script src="js/knockout-3.4.0.debug.js"></script>
 <script src="js/app.js"></script>

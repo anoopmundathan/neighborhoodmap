@@ -8,6 +8,44 @@ html,body {
 	height: 100%;
 }
 
+
+.search-header {
+	background: red;
+}
+
+.hamburger {
+	border: solid 2px;
+	height: 30px;
+	width: 40px;
+}
+
+.search-box {
+	height: 30px;
+	width: calc(100% - 500px);
+	
+}
+
+.listview {
+	position: absolute;;
+	z-index: 1;
+	background: #3e3c3d;
+	width: 150px;
+}
+
+ul {
+	margin: 0;
+	padding: 2px;
+}
+
+li {
+	text-transform: uppercase;
+	color: white;
+	list-style: none;
+	margin: 0;
+	padding: 10px;
+	border-bottom: solid 1px;
+}
+
 #map {
 	height: 100%;
 }
