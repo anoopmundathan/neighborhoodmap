@@ -4,7 +4,7 @@
 var locationsList = [
     {name:'Wasabi',location : {lat: 51.505131,lng: -0.020333}},
     {name:'Nandos',location : {lat: 51.505156,lng: -0.020095}},
-    {name:'Jamies',location : {lat: 51.504699,lng: -0.014747}},
+    {name:"Jamie's Italian",location : {lat: 51.504699,lng: -0.014747}},
     {name:'Turkish',location : {lat: 51.501607,lng: -0.019250}},
     {name:'Pizza Express',location : {lat: 51.503397,lng: -0.018879}},
     {name:'Tortilla',location : {lat: 51.505283,lng: -0.020682}},
@@ -42,6 +42,9 @@ var viewModel = function () {
     this.visibleLocations = ko.observableArray();
     this.userInput = ko.observable();
 
+
+    var infoWindow = new google.maps.InfoWindow({});
+
     locationsList.forEach(function (item) {
 
         //Create location object
@@ -55,13 +58,48 @@ var viewModel = function () {
                 animation: google.maps.Animation.DROP
         });
 
-        var infoWindow = new google.maps.InfoWindow({
-                content: item.name
-            });
+        
             
         //Register click event for each marker
         marker.addListener('click', function () {
-            infoWindow.open(map, marker);
+
+            console.log(marker);
+
+            //Make asynchronous call to forsquare API to get restaurant review.
+            $.ajax({
+                        url: 'https://api.foursquare.com/v2/venues/explore',
+                        type: 'GET',
+                        dataType: 'json',
+
+                        data: {
+                            client_id: 'UDAIBO0KLAVZAXOV1QCFE5WMROTWBLH5EVIGT1YT4QE5GBZI',
+                            client_secret: 'UN3EV2ASZGLNVNKEUSMUNMRLA2WDOZVC1SSWD33SUESQ1FFT',
+                            v: '20160407',
+                            limit: 1,
+                            ll: item.location.lat + ',' + item.location.lng,
+                            query: item.name,
+                            async: true
+
+                        },
+
+                        //Execute callback function once response is received from 3rd party. Show InfoWindw
+                        success: function(results) {
+
+                            infoWindow.open(map, marker);
+                            infoWindow.setContent('<div>Rating:' +results.response.groups[0].items[0].venue.rating    + 
+                                '</p><h4> Phone:' + results.response.groups[0].items[0].venue.contact.formattedPhone  + 
+                                '</h4><p>' + results.response.groups[0].items[0].tips[0].text + 
+                                '</p><a href=' + results.response.groups[0].items[0].tips[0].canonicalUrl + '>FourSquare</a></p></div>');
+    
+
+                        },
+
+                        error: function(e) {
+                            infoWindow.setContent("<h4> FourSquare info unavailable at the moment. Please try back later.</h4>");
+
+                        }
+                    });
+
             marker.setAnimation(google.maps.Animation.BOUNCE);
             setTimeout(function () {
                 marker.setAnimation(null);
@@ -103,6 +141,10 @@ var viewModel = function () {
             item.marker.setVisible(true);
         })
 
+    };
+
+    this.locationClicked = function (loc) {
+        google.maps.event.trigger(loc.marker, 'click');
     }
 
 }

@@ -46,6 +46,10 @@ li {
 	border-bottom: solid 1px;
 }
 
+li:hover {
+	color: yellow;
+}
+
 #map {
 	height: 100%;
 }
