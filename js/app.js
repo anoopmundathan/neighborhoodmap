@@ -2,14 +2,14 @@
 
 //Favourite restaurants & take away near Canary Wharf, London
 var locationsList = [
-    {name:'Wasabi',location : {lat: 51.505131,lng: -0.020333}},
-    {name:'Nandos',location : {lat: 51.505156,lng: -0.020095}},
-    {name:"Jamie's Italian",location : {lat: 51.504699,lng: -0.014747}},
-    {name:'Turkish',location : {lat: 51.501607,lng: -0.019250}},
-    {name:'Pizza Express',location : {lat: 51.503397,lng: -0.018879}},
-    {name:'Tortilla',location : {lat: 51.505283,lng: -0.020682}},
-    {name:'Itsu', location : {lat: 51.505367, lng: -0.020247}},
-    {name:'Pret a Manger', location : {lat: 51.505467, lng: -0.020647}}
+    {name:'Wasabi', icon:'./images/japanese.png',location : {lat: 51.505131,lng: -0.020333}},
+    {name:'Nandos', icon:'./images/restaurant.png',location : {lat: 51.505156,lng: -0.020095}},
+    {name:"Jamie's Italian",icon:'./images/italian.png',location : {lat: 51.504699,lng: -0.014747}},
+    {name:'Turkish',icon:'./images/turkish.png',location : {lat: 51.501607,lng: -0.019250}},
+    {name:'Pizza Express',icon:'./images/pizzaria.png',location : {lat: 51.503397,lng: -0.018879}},
+    {name:'Tortilla',icon:'./images/takeaway.png',location : {lat: 51.505283,lng: -0.020682}},
+    {name:'Itsu', icon:'./images/takeaway.png',location : {lat: 51.505367, lng: -0.020247}},
+    {name:'Pret a Manger', icon:'./images/takeaway.png',location : {lat: 51.505467, lng: -0.020647}}
 ];
 
 //Location class constructor
@@ -55,6 +55,7 @@ var viewModel = function () {
                 position: item.location,
                 map: map,
                 title: item.name,
+                icon: item.icon,
                 animation: google.maps.Animation.DROP
         });
 
@@ -63,10 +64,18 @@ var viewModel = function () {
         //Register click event for each marker
         marker.addListener('click', function () {
 
-            console.log(marker);
-
-            //Make asynchronous call to forsquare API to get restaurant review.
             $.ajax({
+                url: 'https://api.instagram.com/v1/media/search?lat=' + 
+                item.location.lat +'&lng=' + item.location.lng + '&access_token=1183052.0815fb2.fafb30a0e819477d93f79c0cce36b70e',
+
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+            //Make asynchronous call to forsquare API to get restaurant review.
+            /*$.ajax({
                         url: 'https://api.foursquare.com/v2/venues/explore',
                         type: 'GET',
                         dataType: 'json',
@@ -99,7 +108,7 @@ var viewModel = function () {
 
                         }
                     });
-
+            */
             marker.setAnimation(google.maps.Animation.BOUNCE);
             setTimeout(function () {
                 marker.setAnimation(null);
@@ -144,7 +153,12 @@ var viewModel = function () {
     };
 
     this.locationClicked = function (loc) {
+        //console.log(loc);
         google.maps.event.trigger(loc.marker, 'click');
+    }
+
+    this.locationClick = function (loc) {
+        console.log(loc);
     }
 
 }

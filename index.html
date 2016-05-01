@@ -9,11 +9,12 @@
 
 <body>
     <div class="container">
-        <div class="search-header">
-            <input class = "search-box" data-bind = "textInput: userInput, event: {keyup: filterMarkers}">
-            <!--<input class = "search-box" type ="search"  data-bind = "textInput: userInput, event: {keyup: filterMarkers}">-->
-        </div>
-    
+        
+        <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
+        </svg>
+         <input class = "search-box" data-bind = "textInput: userInput, event: {keyup: filterMarkers}">
+
         <div class="listview">
             <ul data-bind="foreach:locations">
                 <li data-bind="text:name,click: $parent.locationClicked"></li>
@@ -24,9 +25,27 @@
         </div>
 
     </div>
+
+    
 </body>
 
 <script src="js/jQuery.js"></script>
+<script type="text/javascript">
+    $(document).ready (function () {
+        var menu = 'close';
+        $('#hamburger').on('click', function () {
+            if (menu == 'close') {
+                $('.listview').css('transform','translate(0,0)');
+                //$('.listview').css('transform','scale(1,1)');
+                menu = 'open';
+            } else {
+                $('.listview').css('transform','translate(-100%,0)');
+                //$('.listview').css('transform','scale(0,0)');
+                menu = 'close';
+            }
+        });
+    });
+</script>
 <script src="js/knockout-3.4.0.debug.js"></script>
 <script src="js/app.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfAxwCQ86q9ns6iTLhuUZvdfAiXfii6PQ&libraries=places&callback=initMap" async defer></script>

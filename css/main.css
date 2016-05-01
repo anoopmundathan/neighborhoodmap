@@ -1,36 +1,59 @@
-html,body {
+html,
+body {
 	height: 100%;
+	width: 100%;
 	margin: 0;
 	padding: 0;
+	top:0;
 }
 
 .container {
+	position: relative;;
 	height: 100%;
+	width: 100%;
+	top:0;
+	left: 0;
 }
 
-
-.search-header {
-	background: red;
-}
-
-.hamburger {
-	border: solid 2px;
-	height: 30px;
+svg {
+	position: absolute;
+	top: 7px;
+	left: 2px;
 	width: 40px;
+	height: 40px;
+	z-index: 1;
 }
 
 .search-box {
+	position: absolute;
+	top:10px;
+	left:45px;
+	width: 250px;
 	height: 30px;
-	width: calc(100% - 500px);
-	
+	z-index: 1;
 }
 
 .listview {
-	position: absolute;;
+
+	position: absolute;
+	width: 300px;
+	height: 100%;
 	z-index: 1;
 	background: #3e3c3d;
-	width: 150px;
+	transform: translate(-100%,0);
+	/*transform: scale(0,0);*/
+	transition: all .3s ease;
+	top:50px;
+
 }
+
+/*@media screen and (max-width: 900px) {
+	.listview {
+		/*transform: translate(-100%,0);*/
+		/*transform: translate(0,-200%);*/
+/*	}
+}*/
+
 
 ul {
 	margin: 0;
