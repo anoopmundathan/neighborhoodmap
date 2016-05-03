@@ -1,0 +1,23 @@
+{
+  "name": "neighborhoodmap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anoopmundathan/neighborhoodmap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anoopmundathan/neighborhoodmap/issues"
+  },
+  "homepage": "https://github.com/anoopmundathan/neighborhoodmap#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-uglify": "^1.5.3"
+  }
+}

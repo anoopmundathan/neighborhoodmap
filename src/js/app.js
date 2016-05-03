@@ -1,24 +1,24 @@
 'use strict';
 //My Favourites Places around in London
 var locationsList = [
-    {name:'Buckingham Place', icon:'./images/monument.png',location:{lat:51.501518, lng:-0.141890}},
-    {name:'Tower Bridge', icon:'./images/bridge.png',location:{lat:51.505450, lng:-0.075432}},
-    {name:'London Eye', icon:'./images/london-eye.png',location: {lat:51.503712, lng:-0.119532}},
-    {name:'St Paul Cathedral',icon:'./images/stpaul.png',location:{lat:51.514006,lng: -0.098340}},
-    {name:'Houses of Parliment',icon:'./images/monument.png',location:{lat:51.500943,lng:-0.124615}},
-    {name:'Piccadelly Circus',icon:'./images/monument.png',location:{lat:51.510284, lng:-0.134573}},
+    {name:'Buckingham Place', icon:'./img/monument.png',location:{lat:51.501518, lng:-0.141890}},
+    {name:'Tower Bridge', icon:'./img/bridge.png',location:{lat:51.505450, lng:-0.075432}},
+    {name:'London Eye', icon:'./img/london-eye.png',location: {lat:51.503712, lng:-0.119532}},
+    {name:'St Paul Cathedral',icon:'./img/stpaul.png',location:{lat:51.514006,lng: -0.098340}},
+    {name:'Houses of Parliment',icon:'./img/monument.png',location:{lat:51.500943,lng:-0.124615}},
+    {name:'Piccadelly Circus',icon:'./img/monument.png',location:{lat:51.510284, lng:-0.134573}},
    
-    {name:'Hyde Park',icon:'./images/nature.png',location: {lat:51.507308,lng:-0.165816}},
-    {name:'Green Park',icon:'./images/nature.png',location:{lat:51.503975,lng:-0.143924}},
-    {name:'Regents Park',icon:'./images/nature.png',location:{lat:51.533359,lng: -0.142210}},
+    {name:'Hyde Park',icon:'./img/nature.png',location: {lat:51.507308,lng:-0.165816}},
+    {name:'Green Park',icon:'./img/nature.png',location:{lat:51.503975,lng:-0.143924}},
+    {name:'Regents Park',icon:'./img/nature.png',location:{lat:51.533359,lng: -0.142210}},
     
-    {name:'Natural History Museum',icon:'./images/building.png',location:{lat:51.496895,lng:-0.176335}},
-    {name:'British Museum',icon:'./images/building.png',location:{lat:51.519527, lng:-0.126967}},
-    {name:'Tate Modern',icon:'./images/building.png',location:{lat:51.507796,lng:-0.099324}},
+    {name:'Natural History Museum',icon:'./img/building.png',location:{lat:51.496895,lng:-0.176335}},
+    {name:'British Museum',icon:'./img/building.png',location:{lat:51.519527, lng:-0.126967}},
+    {name:'Tate Modern',icon:'./img/building.png',location:{lat:51.507796,lng:-0.099324}},
     
-    {name:'Wembley Football Stadium',icon:'./images/football.png',location:{lat:51.556661, lng:-0.279433}},
-    {name:'Chelsea FC', icon:'',icon:'./images/football.png',location:{lat:51.481892, lng:-0.191019}},
-    {name:'Arsenal FC', icon:'',icon:'./images/football.png',location:{lat:51.557135, lng:-0.106335}}
+    {name:'Wembley Football Stadium',icon:'./img/football.png',location:{lat:51.556661, lng:-0.279433}},
+    {name:'Chelsea FC', icon:'',icon:'./img/football.png',location:{lat:51.481892, lng:-0.191019}},
+    {name:'Arsenal FC', icon:'',icon:'./img/football.png',location:{lat:51.557135, lng:-0.106335}}
     
 ];
 
@@ -103,7 +103,7 @@ var viewModel = function () {
     
 
                         },
-
+                        
                         error: function(e) {
                             infoWindow.setContent("<h4> FourSquare info unavailable at the moment. Please try back later.</h4>");
 

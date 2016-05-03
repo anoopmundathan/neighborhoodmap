@@ -80,7 +80,6 @@ li {
 }
 
 li:hover {
-	/*background: #566270;*/
 	background: #f0f0f0;
 }
 
@@ -93,7 +92,7 @@ li:hover {
 
 .infowindow {
 	width: 200px;
-	height: 200px;
+	height: 220px;
 	margin: 0;
 	padding: 0;
 }
