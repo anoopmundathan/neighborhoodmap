@@ -6,8 +6,6 @@ This App displays google map with my favourite locations around London.
 
 ### Getting started
 Open the index.html to view the application from src or dist folder.
-Application is responsive to devices.
-.
 
 ####Functionality
 
@@ -26,9 +24,9 @@ Application is responsive to devices.
 [gulp](http://gulpjs.com/) is used to 
 
 ##### Minify html, CSS & JS
-	###### 1.Minify index.html  using [gulp-htmlmin](https://www.npmjs.com/package/gulp-htmlmin) plugin.
-	###### 1.Minify CSS using [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin) plugin.
-	###### 1.Uglify JS using [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) plugin.
+	 1.Minify index.html  using [gulp-htmlmin](https://www.npmjs.com/package/gulp-htmlmin) plugin.
+	 1.Minify CSS using [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin) plugin.
+	 1.Uglify JS using [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) plugin.
 
 ####Credits
 All Google Marker Icons are downloaded from http://www.flaticon.com/
