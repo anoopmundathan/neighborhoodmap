@@ -50,6 +50,16 @@
                 menu = 'close';
             }
         });
+
+        //Close list view if clicked on map
+        $('#map').on('click', function () {
+            if (menu == 'open') {
+                $('.listview').css('transform','translate(-200%,0)');
+                $('#map').css('transform','translate(0,0)');
+                $('.menu').css('left','0px');
+                menu = 'close';
+            }
+        })
     });
 </script>
 <script src="js/knockout-3.4.0.js"></script>

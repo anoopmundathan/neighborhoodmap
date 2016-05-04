@@ -1,24 +1,24 @@
 'use strict';
 //My Favourites Places around in London
 var locationsList = [
-    {name:'Buckingham Place', icon:'./img/monument.png',location:{lat:51.501518, lng:-0.141890}},
-    {name:'Tower Bridge', icon:'./img/bridge.png',location:{lat:51.505450, lng:-0.075432}},
-    {name:'London Eye', icon:'./img/london-eye.png',location: {lat:51.503712, lng:-0.119532}},
-    {name:'St Paul Cathedral',icon:'./img/stpaul.png',location:{lat:51.514006,lng: -0.098340}},
-    {name:'Houses of Parliment',icon:'./img/monument.png',location:{lat:51.500943,lng:-0.124615}},
-    {name:'Piccadelly Circus',icon:'./img/monument.png',location:{lat:51.510284, lng:-0.134573}},
+    {name: 'Buckingham Place', icon: './img/monument.png', location: {lat: 51.501518, lng: -0.141890}},
+    {name: 'Tower Bridge', icon: './img/bridge.png', location: {lat: 51.505450, lng: -0.075432}},
+    {name: 'London Eye', icon: './img/london-eye.png', location: {lat: 51.503712, lng: -0.119532}},
+    {name: 'St Paul Cathedral', icon: './img/stpaul.png', location: {lat: 51.514006, lng: -0.098340}},
+    {name: 'Houses of Parliment', icon: './img/monument.png', location: {lat: 51.500943, lng: -0.124615}},
+    {name: 'Piccadelly Circus', icon: './img/monument.png', location: {lat: 51.510284, lng: -0.134573}},
    
-    {name:'Hyde Park',icon:'./img/nature.png',location: {lat:51.507308,lng:-0.165816}},
-    {name:'Green Park',icon:'./img/nature.png',location:{lat:51.503975,lng:-0.143924}},
-    {name:'Regents Park',icon:'./img/nature.png',location:{lat:51.533359,lng: -0.142210}},
+    {name: 'Hyde Park', icon: './img/nature.png', location: {lat: 51.507308, lng: -0.165816}},
+    {name: 'Green Park', icon: './img/nature.png', location: {lat: 51.503975, lng: -0.143924}},
+    {name: 'Regents Park', icon: './img/nature.png', location: {lat: 51.533359, lng: -0.142210}},
     
-    {name:'Natural History Museum',icon:'./img/building.png',location:{lat:51.496895,lng:-0.176335}},
-    {name:'British Museum',icon:'./img/building.png',location:{lat:51.519527, lng:-0.126967}},
-    {name:'Tate Modern',icon:'./img/building.png',location:{lat:51.507796,lng:-0.099324}},
+    {name: 'Natural History Museum', icon: './img/building.png', location: {lat: 51.496895, lng: -0.176335}},
+    {name: 'British Museum', icon: './img/building.png', location: {lat: 51.519527, lng: -0.126967}},
+    {name: 'Tate Modern', icon: './img/building.png', location: {lat: 51.507796, lng: -0.099324}},
     
-    {name:'Wembley Football Stadium',icon:'./img/football.png',location:{lat:51.556661, lng:-0.279433}},
-    {name:'Chelsea FC', icon:'',icon:'./img/football.png',location:{lat:51.481892, lng:-0.191019}},
-    {name:'Arsenal FC', icon:'',icon:'./img/football.png',location:{lat:51.557135, lng:-0.106335}}
+    {name: 'Wembley Football Stadium', icon: './img/football.png', location: {lat: 51.556661, lng: -0.279433}},
+    {name: 'Chelsea FC', icon: './img/football.png', location: {lat: 51.481892, lng: -0.191019}},
+    {name: 'Arsenal FC', icon: './img/football.png', location: {lat: 51.557135, lng: -0.106335}}
     
 ];
 
@@ -43,7 +43,7 @@ var initMap = function () {
     });
 
     //Bind view Model to knockout
-    ko.applyBindings(new viewModel);
+    ko.applyBindings(new viewModel());
 }
 
 
@@ -78,11 +78,11 @@ var viewModel = function () {
         marker.addListener('click', function (e) {
             //Make asynchronous call to forsquare API to get review about place.
             $.ajax({
-                        url: 'https://api.foursquare.com/v2/venues/explore',
-                        type: 'GET',
-                        dataType: 'json',
+                    url: 'https://api.foursquare.com/v2/venues/explore',
+                    type: 'GET',
+                    dataType: 'json',
 
-                        data: {
+                    data: {
                             client_id: 'QDHBVRFOZVOOUF442VUWKDQOKBZVX50VMPJAYIZ3DCXFGP4S',
                             client_secret: 'EUSSHEJASZD33QUGVHXHNH4TI1D24S0MVZTFJN2ROWTOH4YA',
                             v: '20160407',
@@ -91,24 +91,22 @@ var viewModel = function () {
                             query: item.name,
                             async: true
 
-                        },
+                    },
 
                         //Execute success function once response is received from 3rd party. Show InfoWindw
-                        success: function(results) {
+                    success: function(results) {
                             infoWindow.open(map, marker);
                             infoWindow.setContent('<div class="infowindow"><h3>'+item.name+'</h3>Rating:' +results.response.groups[0].items[0].venue.rating    + 
                                 '</p><h4> Phone:' + results.response.groups[0].items[0].venue.contact.formattedPhone  + 
                                 '</h4><p>' + results.response.groups[0].items[0].tips[0].text + 
                                 '</p><a href=' + results.response.groups[0].items[0].tips[0].canonicalUrl + '>FourSquare</a></p></div>');
-    
-
-                        },
+                    },
                         
-                        error: function(e) {
+                    error: function(e) {
                             infoWindow.setContent("<h4> FourSquare info unavailable at the moment. Please try back later.</h4>");
 
                         }
-                    });
+                });
 
             //Bounce effect when the Marker is clicked
             marker.setAnimation(google.maps.Animation.BOUNCE);
