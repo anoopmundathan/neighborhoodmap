@@ -23,7 +23,7 @@ Open the index.html to view the application from src or dist folder.
 ####Build tools
 [gulp](http://gulpjs.com/) is used to 
 
-##### Minify html, CSS & JS
+##### Minify HTML, CSS & JS
 	 1.Minify index.html  using [gulp-htmlmin](https://www.npmjs.com/package/gulp-htmlmin) plugin.
 	 1.Minify CSS using [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin) plugin.
 	 1.Uglify JS using [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) plugin.
