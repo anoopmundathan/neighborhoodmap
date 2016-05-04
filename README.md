@@ -27,9 +27,9 @@ Open the index.html to view the application from src or dist folder.
 [gulp](http://gulpjs.com/) is used to 
 
 ##### Minify HTML, CSS & JS
-	 1.Minify index.html  using [gulp-htmlmin](https://www.npmjs.com/package/gulp-htmlmin) plugin.
-	 2.Minify CSS using [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin) plugin.
-	 3.Uglify JS using [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) plugin.
+	 Minify index.html  using [gulp-htmlmin](https://www.npmjs.com/package/gulp-htmlmin) plugin.
+	 Minify CSS using [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin) plugin.
+	 Uglify JS using [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) plugin.
 
 ####Credits
 All Google Marker Icons are downloaded from http://www.flaticon.com/
