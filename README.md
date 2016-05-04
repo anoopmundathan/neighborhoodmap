@@ -30,6 +30,7 @@ Open the index.html to view the application from src or dist folder.
  Uglify JS using [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) plugin.
 
 ####Credits
+Off canvas menu idea https://www.youtube.com/watch?v=9_pbp26vrco
 All Google Marker Icons are downloaded from http://www.flaticon.com/
 
 ####References:
