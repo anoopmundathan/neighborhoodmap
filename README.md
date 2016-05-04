@@ -20,24 +20,26 @@ Open the index.html to view the application from src or dist folder.
 1. Application utilizes Google's Map API in a synchronous manner
 1. Code is ready for personal review and is neatly formatted with comments where appropriate
 
+#### 3rd Part API
+[Foursquare API]( https://developer.foursquare.com/docs/) used to get the review details about the location. API request is made using JQuery $ajax function.
+
 ####Build tools
 [gulp](http://gulpjs.com/) is used to 
 
 ##### Minify HTML, CSS & JS
 	 1.Minify index.html  using [gulp-htmlmin](https://www.npmjs.com/package/gulp-htmlmin) plugin.
-	 1.Minify CSS using [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin) plugin.
-	 1.Uglify JS using [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) plugin.
+	 2.Minify CSS using [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin) plugin.
+	 3.Uglify JS using [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) plugin.
 
 ####Credits
 All Google Marker Icons are downloaded from http://www.flaticon.com/
 
 ####References:
-* https://discussions.udacity.com/t/google-maps-marker-is-not-a-function-error/32315
 * https://github.com/udacity/fend-office-hours/tree/master/Javascript%20Design%20Patterns/P5%20Project%20Overview
 * https://developers.google.com/maps/
 * http://knockoutjs.com/documentation/
 * http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
-* https://www.foursquare.com/developer/endpoints
+* https://developer.foursquare.com/docs/
 * http://jshint.com/
 * http://api.jquery.com/
 * https://www.udacity.com/course/viewer#!/c-ud893-nd/l-3561069759/m-3530719305
