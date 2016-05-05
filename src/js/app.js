@@ -27,7 +27,7 @@ var Location = function (item) {
     this.name = ko.observable(item.name);
     this.location = ko.observable(item.location);
     this.marker = ko.observable();
-}
+};
 
 //Initialize google map
 var map;
@@ -44,20 +44,28 @@ var initMap = function () {
 
     //Bind view Model to knockout
     ko.applyBindings(new viewModel());
-}
+};
 
+var googlemapError = function () {
+    $('#map').append('<div class="error"><h3>OOPS...Something went wrong. Google Map is not Loaded</h3></div>');
+};
 
 var viewModel = function () {
     
     var self = this;
     
     this.locations = ko.observableArray ();
-    this.visibleLocations = ko.observableArray();
-    this.userInput = ko.observable();
-
-
+    
+    //Create InfoWindow object
     var infoWindow = new google.maps.InfoWindow({});
 
+    /*Loop through all locationsList array of objects and create location object
+      This forEach loop does following
+        1. create 'location' object using 'Location' constructor
+        2. create google Map Marker object
+        3. Register click event for marker
+        4. Add all created objects into 'locations' observableArray
+    */
     locationsList.forEach(function (item) {
 
         //Create location object
@@ -71,92 +79,90 @@ var viewModel = function () {
                 icon: item.icon,
                 animation: google.maps.Animation.DROP
         });
-
-        
-            
-        //Register click event for each marker
-        marker.addListener('click', function (e) {
-            //Make asynchronous call to forsquare API to get review about place.
-            $.ajax({
-                    url: 'https://api.foursquare.com/v2/venues/explore',
-                    type: 'GET',
-                    dataType: 'json',
-
-                    data: {
-                            client_id: 'QDHBVRFOZVOOUF442VUWKDQOKBZVX50VMPJAYIZ3DCXFGP4S',
-                            client_secret: 'EUSSHEJASZD33QUGVHXHNH4TI1D24S0MVZTFJN2ROWTOH4YA',
-                            v: '20160407',
-                            limit: 1,
-                            ll: item.location.lat + ',' + item.location.lng,
-                            query: item.name,
-                            async: true
-
-                    },
-
-                        //Execute success function once response is received from 3rd party. Show InfoWindw
-                    success: function(results) {
-                            infoWindow.open(map, marker);
-                            infoWindow.setContent('<div class="infowindow"><h3>'+item.name+'</h3>Rating:' +results.response.groups[0].items[0].venue.rating    + 
-                                '</p><h4> Phone:' + results.response.groups[0].items[0].venue.contact.formattedPhone  + 
-                                '</h4><p>' + results.response.groups[0].items[0].tips[0].text + 
-                                '</p><a href=' + results.response.groups[0].items[0].tips[0].canonicalUrl + '>FourSquare</a></p></div>');
-                    },
-                        
-                    error: function(e) {
-                            infoWindow.setContent("<h4> FourSquare info unavailable at the moment. Please try back later.</h4>");
-
-                        }
-                });
-
-            //Bounce effect when the Marker is clicked
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-            setTimeout(function () {
-                marker.setAnimation(null);
-            },2000);
+            //Register click event for marker
+            marker.addListener('click', function (){
+                self.openInfoWindow(this);
         });
-
+            
         //Set marker property to the marker just created
         location.marker = marker;
 
         //this keyword can not be used as it was giving locations undefined error, so using self.
-        //Push element into observable Array
+        //Push created location object into observable Array
         self.locations.push(location);  
-        self.visibleLocations.push(location);   
     });
 
-    //This function get executed when user enter search string in the text input.
-    this.filterMarkers = function () {
+    /* Open InfoWindow when marker or list item is clicked.
+       This function receives marker object.
+       Do the Asynchronous call to foursquare api to get review details of marker/location that is clicked.
+    */
+    this.openInfoWindow = function (marker) {
 
-        //Retrieve the user input and convert to lower case
-        var search = this.userInput().toLowerCase();
+        /* Error handling for Ajax request. If it takes more than 8 sec, display below message */
+        var forsquareRequestTimeOut = setTimeout(function () {
+               infoWindow.setContent("<h4> FourSquare info unavailable at the moment. Please try back later.</h4>");
+               infoWindow.open(map, marker);
+        },8000);
 
-        //Remove all items from Observable array 'locations'
-        this.locations.removeAll();
+        //Make Ajax request to foursquare API end point.
+        $.ajax({
+                url: 'https://api.foursquare.com/v2/venues/explore',
+                type: 'GET',
+                dataType: 'json',
 
-        //Remove markers
-        this.visibleLocations().forEach(function (item) {
-            
-            //Make Marker invisible
-            item.marker.setVisible(false);
+                data: {
+                        client_id: 'QDHBVRFOZVOOUF442VUWKDQOKBZVX50VMPJAYIZ3DCXFGP4S',
+                        client_secret: 'EUSSHEJASZD33QUGVHXHNH4TI1D24S0MVZTFJN2ROWTOH4YA',
+                        v: '20160407',
+                        limit: 1,
+                        ll: marker.position.lat() + ',' + marker.position.lng(),
+                        query: marker.title,
+                        async: true
+                    },
 
-            //Load only items into 'locations' obeservable Array, if the match is found
-            if(item.name().toLowerCase().indexOf(search) !== -1){
-                self.locations.push(item);
+                //Execute success function once response is received from 3rd party. Show InfoWindw
+                success: function(results) {
+                        infoWindow.open(map, marker);
+                        infoWindow.setContent('<div class="infowindow"><h3>'+marker.title+'</h3>Rating:' +results.response.groups[0].items[0].venue.rating    + 
+                            '</p><h4> Phone:' + results.response.groups[0].items[0].venue.contact.formattedPhone  + 
+                            '</h4><p>' + results.response.groups[0].items[0].tips[0].text + 
+                            '</p><a href=' + results.response.groups[0].items[0].tips[0].canonicalUrl + '>FourSquare</a></p></div>');
+                            clearTimeout(forsquareRequestTimeOut);
+                        },
+                            
+                });
+
+        //Bounce marker for 2 seconds, when clicked.
+         marker.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(function () {
+                marker.setAnimation(null);
+            },2000);
+    };
+
+    /* Observable for Filter Functionality*/
+    this.places = ko.observableArray(self.locations());
+    this.userInput = ko.observable('');
+
+    /* Filter Functionality for List View */
+    this.filteredList = ko.computed (function () {
+        return ko.utils.arrayFilter(self.places(), function(loc) {
+           if (loc.name().toLowerCase().indexOf(self.userInput().toLowerCase()) >= 0) {
+                loc.marker.setVisible(true);
+                return true;
+            } else {
+                loc.marker.setVisible(false);
+                return false;
             }
         });
-
-        //Make Marker visible
-        this.locations().forEach(function (item) {
-            item.marker.setVisible(true);
-           map.setZoom(13);
-        })
-
-    };
+    });
 
     //Trigger click event when location is clicked from list view.
     this.locationClicked = function (loc) {
-        google.maps.event.trigger(loc.marker, 'click');
-    }
+        self.openInfoWindow(loc.marker);
+    };
 
-}
-    
+    this.displayListView = ko.computed (function () {
+
+    })
+
+};
