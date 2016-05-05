@@ -27,7 +27,7 @@ var Location = function (item) {
     this.name = ko.observable(item.name);
     this.location = ko.observable(item.location);
     this.marker = ko.observable();
-}
+};
 
 //Initialize google map
 var map;
@@ -44,11 +44,11 @@ var initMap = function () {
 
     //Bind view Model to knockout
     ko.applyBindings(new viewModel());
-}
+};
 
 var googlemapError = function () {
     $('#map').append('<div class="error"><h3>OOPS...Something went wrong. Google Map is not Loaded</h3></div>');
-}
+};
 
 var viewModel = function () {
     
@@ -137,7 +137,7 @@ var viewModel = function () {
             setTimeout(function () {
                 marker.setAnimation(null);
             },2000);
-    }
+    };
 
     /* Observable for Filter Functionality*/
     this.places = ko.observableArray(self.locations());
@@ -159,6 +159,10 @@ var viewModel = function () {
     //Trigger click event when location is clicked from list view.
     this.locationClicked = function (loc) {
         self.openInfoWindow(loc.marker);
-    }
+    };
 
-}
+    this.displayListView = ko.computed (function () {
+
+    })
+
+};

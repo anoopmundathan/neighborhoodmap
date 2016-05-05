@@ -18,10 +18,10 @@
         </div>
          
         <!--Display search box and List Items-->
-        <div class="listview">
+        <div class="listview" data-bind="displayListView">
             <input class = "search-box" placeholder = "Filter Location" data-bind = "value: userInput, valueUpdate: 'keyup'">
             <ul data-bind="foreach: filteredList">
-                <li data-bind="text:name,click: $parent.locationClicked"></li>
+                <li class="listitem" data-bind="text:name,click: $parent.locationClicked"></li>
             </ul>
         </div>
 
@@ -32,34 +32,82 @@
 
     <script src="js/jQuery.js"></script>
     <script type="text/javascript">
-    $(document).ready (function () {
+   /* $(document).ready (function () {
 
         //Implement off canvas menu
         var menu = 'close';
         $('#hamburger').on('click', function () {
+
             if (menu == 'close') {
                 $('.listview').css('transform','translate(0,0)');
                 $('#map').css('transform','translate(20%,0)');
                 $('.menu').css('left','300px');
                 menu = 'open';
             } else {
-                $('.listview').css('transform','translate(-200%,0)');
-                $('#map').css('transform','translate(0,0)');
-                $('.menu').css('left','0px');
-                menu = 'close';
+                closeMenu();
             }
         });
 
         //Close list view if clicked on map
         $('#map').on('click', function () {
             if (menu == 'open') {
-                $('.listview').css('transform','translate(-200%,0)');
+               closeMenu();
+            }
+        });
+
+        $('.listview').on('click', function () {
+            closeMenu();
+        });
+
+
+        function closeMenu () {
+            $('.listview').css('transform','translate(-200%,0)');
                 $('#map').css('transform','translate(0,0)');
                 $('.menu').css('left','0px');
                 menu = 'close';
+        }
+    });*/
+
+$(document).ready(function(){
+    //Implement off canvas menu
+    var menu = 'close';
+    $('#hamburger').on('click', function () {
+
+        function openMenu() {
+                    $('.listview').css('transform','translate(0,0)');
+                    $('#map').css('transform','translate(20%,0)');
+                    $('.menu').css('left','300px');
+                    menu = 'open';
+                }
+
+        function closeMenu () {
+                    $('.listview').css('transform','translate(-200%,0)');
+                    $('#map').css('transform','translate(0,0)');
+                    $('.menu').css('left','0px');
+                    menu = 'close';
             }
-        })
+
+        if (menu == 'close') {
+            openMenu();
+
+        } else {
+            closeMenu();
+        }
+
+        //Close list view if clicked on map
+        $('#map').on('click', function () {
+            if (menu == 'open') {
+                closeMenu();
+            }
+        });
+
+        $('.listitem').on('click', function () {
+                closeMenu();
+        });
+
     });
+
+});
     </script>
     <script src="js/knockout-3.4.0.js"></script>
     <script src="js/app.js"></script>

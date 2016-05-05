@@ -1,28 +1,76 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Neighborhood Map</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="css/main.css"><link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css"></head><body><div class="container"><!--Display hamburger --><div class="menu"><svg id="hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/></svg></div><!--Display search box and List Items--><div class="listview"><input class="search-box" placeholder="Filter Location" data-bind="value: userInput, valueUpdate: 'keyup'"><ul data-bind="foreach: filteredList"><li data-bind="text:name,click: $parent.locationClicked"></li></ul></div><!--Google Map div container--><div id="map"></div></div><script src="js/jQuery.js"></script><script type="text/javascript">$(document).ready (function () {
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Neighborhood Map</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="css/main.css"><link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css"></head><body><div class="container"><!--Display hamburger --><div class="menu"><svg id="hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/></svg></div><!--Display search box and List Items--><div class="listview" data-bind="displayListView"><input class="search-box" placeholder="Filter Location" data-bind="value: userInput, valueUpdate: 'keyup'"><ul data-bind="foreach: filteredList"><li class="listitem" data-bind="text:name,click: $parent.locationClicked"></li></ul></div><!--Google Map div container--><div id="map"></div></div><script src="js/jQuery.js"></script><script type="text/javascript">/* $(document).ready (function () {
 
         //Implement off canvas menu
         var menu = 'close';
         $('#hamburger').on('click', function () {
+
             if (menu == 'close') {
                 $('.listview').css('transform','translate(0,0)');
                 $('#map').css('transform','translate(20%,0)');
                 $('.menu').css('left','300px');
                 menu = 'open';
             } else {
-                $('.listview').css('transform','translate(-200%,0)');
-                $('#map').css('transform','translate(0,0)');
-                $('.menu').css('left','0px');
-                menu = 'close';
+                closeMenu();
             }
         });
 
         //Close list view if clicked on map
         $('#map').on('click', function () {
             if (menu == 'open') {
-                $('.listview').css('transform','translate(-200%,0)');
+               closeMenu();
+            }
+        });
+
+        $('.listview').on('click', function () {
+            closeMenu();
+        });
+
+
+        function closeMenu () {
+            $('.listview').css('transform','translate(-200%,0)');
                 $('#map').css('transform','translate(0,0)');
                 $('.menu').css('left','0px');
                 menu = 'close';
+        }
+    });*/
+
+$(document).ready(function(){
+    //Implement off canvas menu
+    var menu = 'close';
+    $('#hamburger').on('click', function () {
+
+        function openMenu() {
+                    $('.listview').css('transform','translate(0,0)');
+                    $('#map').css('transform','translate(20%,0)');
+                    $('.menu').css('left','300px');
+                    menu = 'open';
+                }
+
+        function closeMenu () {
+                    $('.listview').css('transform','translate(-200%,0)');
+                    $('#map').css('transform','translate(0,0)');
+                    $('.menu').css('left','0px');
+                    menu = 'close';
             }
-        })
-    });</script><script src="js/knockout-3.4.0.js"></script><script src="js/app.js"></script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfAxwCQ86q9ns6iTLhuUZvdfAiXfii6PQ&libraries=places&callback=initMap" async defer="defer" onerror="googlemapError()"></script></body></html>
+
+        if (menu == 'close') {
+            openMenu();
+
+        } else {
+            closeMenu();
+        }
+
+        //Close list view if clicked on map
+        $('#map').on('click', function () {
+            if (menu == 'open') {
+                closeMenu();
+            }
+        });
+
+        $('.listitem').on('click', function () {
+                closeMenu();
+        });
+
+    });
+
+});</script><script src="js/knockout-3.4.0.js"></script><script src="js/app.js"></script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfAxwCQ86q9ns6iTLhuUZvdfAiXfii6PQ&libraries=places&callback=initMap" async defer="defer" onerror="googlemapError()"></script></body></html>
