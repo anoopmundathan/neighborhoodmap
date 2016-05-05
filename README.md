@@ -20,6 +20,13 @@ Open the index.html to view the application from src or dist folder.
 1. Application utilizes Google's Map API in a synchronous manner
 1. Code is ready for personal review and is neatly formatted with comments where appropriate
 
+####Change Log - Based on Udacity code reviewer comments 
+1. Error Handling for Google Maps
+1. Error Handling for FourSquare API
+1. Created a click handler function that is bind to List View and Marker
+1. Used computed observable for Filtering List View
+1. Close menu when location list is clicked
+
 #### 3rd Part API
 [Foursquare API]( https://developer.foursquare.com/docs/) used to get the review details about the location. API request is made using JQuery $ajax function.
 
