@@ -1,4 +1,3 @@
-<!--NeighborhoodMap App -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +19,8 @@
          
         <!--Display search box and List Items-->
         <div class="listview">
-            <input class = "search-box" placeholder = "Filter Location" data-bind = "textInput: userInput, event: {keyup: filterMarkers}">
-            <ul data-bind="foreach:locations">
+            <input class = "search-box" placeholder = "Filter Location" data-bind = "value: userInput, valueUpdate: 'keyup'">
+            <ul data-bind="foreach: filteredList">
                 <li data-bind="text:name,click: $parent.locationClicked"></li>
             </ul>
         </div>
@@ -30,9 +29,9 @@
         <div id="map">
         </div>
     </div>
-</body>
-<script src="js/jQuery.js"></script>
-<script type="text/javascript">
+
+    <script src="js/jQuery.js"></script>
+    <script type="text/javascript">
     $(document).ready (function () {
 
         //Implement off canvas menu
@@ -61,8 +60,10 @@
             }
         })
     });
-</script>
-<script src="js/knockout-3.4.0.js"></script>
-<script src="js/app.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfAxwCQ86q9ns6iTLhuUZvdfAiXfii6PQ&libraries=places&callback=initMap" async defer></script>
+    </script>
+    <script src="js/knockout-3.4.0.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfAxwCQ86q9ns6iTLhuUZvdfAiXfii6PQ&libraries=places&callback=initMap" async defer onerror="googlemapError()"></script>
+</body>
+
 </html>
