@@ -161,8 +161,4 @@ var viewModel = function () {
         self.openInfoWindow(loc.marker);
     };
 
-    this.displayListView = ko.computed (function () {
-
-    })
-
 };
