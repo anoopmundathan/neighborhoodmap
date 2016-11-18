@@ -25,7 +25,7 @@ $ gulp
 $ open dist/index.html
 ```
 
-####Functionality
+### Functionality
 
 * When you open the App, first it displays google Map, location markers and hamburger icon
 * Click on the hamburger menu to open or close the list view with Search Bar
@@ -38,27 +38,27 @@ $ open dist/index.html
 * Application utilizes Google's Map API in a synchronous manner
 * Code is ready for personal review and is neatly formatted with comments where appropriate
 
-#### Change Log - Based on Udacity code reviewer comments 
+### Change Log - Based on Udacity code reviewer comments 
 * Error Handling for Google Maps
 * Error Handling for FourSquare API
 * Created a click handler function that is bind to List View and Marker
 * Used computed observable for Filtering List View
 * Close menu when location list is clicked
 
-#### 3rd Part API
+### 3rd Part API
 [Foursquare API]( https://developer.foursquare.com/docs/) used to get the review details about the location. API request is made using JQuery $ajax function.
 
-#### gulp plugins used
+### Build tool and Plugin
 * [gulp](http://gulpjs.com/) 
 * [gulp-htmlmin](https://www.npmjs.com/package/gulp-htmlmin)
 * [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin)
 * [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
 
-#### Credits
+### Credits
 
 All Google Marker Icons are downloaded from http://www.flaticon.com/
 
-#### References:
+### References:
 * https://github.com/udacity/fend-office-hours/tree/master/Javascript%20Design%20Patterns/P5%20Project%20Overview
 * https://developers.google.com/maps/
 * http://knockoutjs.com/documentation/
