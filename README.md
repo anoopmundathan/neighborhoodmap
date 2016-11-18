@@ -1,4 +1,4 @@
-## neighborhoodmap
+# neighborhoodmap
 
 [Live Demo](http://anoopmundathan.github.io/neighborhoodmap/dist)
 
