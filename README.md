@@ -1,5 +1,7 @@
 ## Neighborhood Map Project
 
+[Live Demo](http://anoopmundathan.github.io/neighborhoodmap/dist)
+
 This Project is part of Udacity Front End Web Developer Nanodegree.
 
 This App displays google map with my favourite locations around London.
