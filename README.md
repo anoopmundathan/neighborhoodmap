@@ -38,7 +38,7 @@ $ open dist/index.html
 * Application utilizes Google's Map API in a synchronous manner
 * Code is ready for personal review and is neatly formatted with comments where appropriate
 
-####Change Log - Based on Udacity code reviewer comments 
+#### Change Log - Based on Udacity code reviewer comments 
 * Error Handling for Google Maps
 * Error Handling for FourSquare API
 * Created a click handler function that is bind to List View and Marker
@@ -48,17 +48,17 @@ $ open dist/index.html
 #### 3rd Part API
 [Foursquare API]( https://developer.foursquare.com/docs/) used to get the review details about the location. API request is made using JQuery $ajax function.
 
-#### gulp plguins used
+#### gulp plugins used
 * [gulp](http://gulpjs.com/) 
 * [gulp-htmlmin](https://www.npmjs.com/package/gulp-htmlmin)
 * [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin)
 * [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
 
-####Credits
+#### Credits
 
 All Google Marker Icons are downloaded from http://www.flaticon.com/
 
-####References:
+#### References:
 * https://github.com/udacity/fend-office-hours/tree/master/Javascript%20Design%20Patterns/P5%20Project%20Overview
 * https://developers.google.com/maps/
 * http://knockoutjs.com/documentation/
