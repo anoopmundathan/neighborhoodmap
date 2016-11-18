@@ -48,11 +48,11 @@ $ open dist/index.html
 #### 3rd Part API
 [Foursquare API]( https://developer.foursquare.com/docs/) used to get the review details about the location. API request is made using JQuery $ajax function.
 
-####Build tools
-[gulp](http://gulpjs.com/) is used to Minify HTML, CSS & JS.
- Minify index.html  using [gulp-htmlmin](https://www.npmjs.com/package/gulp-htmlmin) plugin.
- Minify CSS using [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin) plugin.
- Uglify JS using [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) plugin.
+#### gulp plguins used
+* [gulp](http://gulpjs.com/) 
+* [gulp-htmlmin](https://www.npmjs.com/package/gulp-htmlmin)
+* [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin)
+* [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
 
 ####Credits
 
